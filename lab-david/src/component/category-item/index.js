@@ -29,8 +29,11 @@ class CategoryItem extends React.Component{
     return(
       <li key={this.props.catId} className='catitem'>
         {!this.state.editing ?
-          <div onClick={() => this.setState({editing: true})}>
-            <h4>{this.props.name}</h4>
+          <div>
+            <div onClick={() => this.setState({editing: true})}>
+              <h4>{this.props.name}</h4>
+              <p>Budget: {this.props.budget}</p>
+            </div>
             <button onClick={this.handleDelete}>Delete</button>
           </div>
           :
@@ -43,3 +46,5 @@ class CategoryItem extends React.Component{
     )
   }
 }
+
+export default CategoryItem;

@@ -16,6 +16,7 @@ class CategoryList extends React.Component{
   renderList(){
     return this.props.categories.map(item => 
       <CategoryItem
+        key={item.id}
         catId={item.id}
         handleUpdate={this.props.categoryUpdate}
         handleDelete={this.props.categoryDelete}
@@ -27,10 +28,16 @@ class CategoryList extends React.Component{
 
   render(){
     if(this.props.categories){
+      const displayList = this.renderList();
       return(
         <div className='category-list'>
           <h2>categories.</h2>
-          <ul>{this.renderList}</ul>
+          <ul>{displayList}</ul>
+        </div>
+      )
+    } else {
+      return(
+        <div className='category-list'>
         </div>
       )
     }

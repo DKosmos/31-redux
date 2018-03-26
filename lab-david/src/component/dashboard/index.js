@@ -9,8 +9,8 @@ import category from '../../reducer/category.js';
 
 class Dashboard extends React.Component{
   componentDidMount(){
-    this.props.categoryCreate({title: 'test1'});
-    this.props.categoryCreate({title: 'test2'});
+    this.props.categoryCreate({name: 'test1', budget: 100});
+    this.props.categoryCreate({name: 'test2', budget: 200});
   }
 
   render(){
