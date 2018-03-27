@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {categoryUpdate, categoryDelete} from '../../action/category-actions.js';
+// import {categoryUpdate, categoryDelete} from '../../action/category-actions.js';
 import CategoryForm from '../category-form';
 import CategoryItem from '../category-item';
 import category from '../../reducer/category.js';
@@ -16,14 +16,8 @@ class CategoryList extends React.Component{
   renderList(){
     return this.props.categories.map(item => 
       <CategoryItem
-        editing='false'
         key={item.id}
-        catId={item.id}
-        handleUpdate={this.props.categoryUpdate}
-        handleDelete={this.props.categoryDelete}
-        name={item.name}
-        budget={item.budget}
-        timestamp={item.timestamp} />
+        category={item} />
     )
   }
 
@@ -51,11 +45,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, getState) => {
-  return{
-    categoryUpdate: (category) => dispatch(categoryUpdate(category)),
-    categoryDelete: (category) => dispatch(categoryDelete(category))
-  }
-}
+// const mapDispatchToProps = (dispatch, getState) => {
+//   return{
+//     categoryUpdate: (category) => dispatch(categoryUpdate(category)),
+//     categoryDelete: (category) => dispatch(categoryDelete(category))
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryList);
+export default connect(mapStateToProps)(CategoryList);

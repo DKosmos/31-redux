@@ -6,24 +6,29 @@ class CategoryForm extends React.Component{
   constructor(props){
     super(props);
 
-    this.state ={
-      name: props.category ? props.category.name : '',
-      budget: props.category ? props.category.budget : 0,
-      id: props.category ? props.category.id : ''
-    }
+    this.state = this.props.category ? {...props.category} : {name: '', budget: ''}
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillReceiveProps(props){
+    if(props.category){
+      this.setState(props.category);
+    }
+  }
+
   handleChange(e){
-    this.setState({editing: false})
     this.setState({[e.target.name]: e.target.value}, () => console.log('handleChange', this.state));
   }
 
   handleSubmit(e){
     e.preventDefault();
-    this.props.onComplete(Object.assign({}, this.state));
+    this.props.onComplete({...this.state});
+
+    if(!this.props.category){
+      this.setState({name: '', budget: ''})
+    }
   }
 
   render(){
