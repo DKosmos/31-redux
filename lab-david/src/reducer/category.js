@@ -11,6 +11,7 @@ export default (state=initialState, action) => {
     case 'CATEGORY_UPDATE':
       return state.map(category => category.id === payload.id ? payload : category)
     case 'CATEGORY_DELETE':
+      console.log('deleteId', payload);
       return state.filter(category => category.id !== payload.id)
     case 'CATEGORY_RESET':
       return initialState

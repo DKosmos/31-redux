@@ -10,7 +10,7 @@ class CategoryItem extends React.Component{
       editing: false,
       name: this.props.name,
       budget: this.props.budget,
-      catId: this.props.catId,
+      id: this.props.catId,
       timestamp: this.props.timestamp
     }
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,7 +18,7 @@ class CategoryItem extends React.Component{
   }
 
   handleSubmit(category){
-    this.props.handleSubmit(category);
+    this.props.handleUpdate(category);
   }
 
   handleDelete(e){
@@ -28,7 +28,7 @@ class CategoryItem extends React.Component{
   render(){
     return(
       <li key={this.props.catId} className='catitem'>
-        {!this.state.editing ?
+        {this.state.editing === false ?
           <div>
             <div onClick={() => this.setState({editing: true})}>
               <h4>{this.props.name}</h4>

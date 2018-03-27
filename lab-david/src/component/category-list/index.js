@@ -16,6 +16,7 @@ class CategoryList extends React.Component{
   renderList(){
     return this.props.categories.map(item => 
       <CategoryItem
+        editing='false'
         key={item.id}
         catId={item.id}
         handleUpdate={this.props.categoryUpdate}
