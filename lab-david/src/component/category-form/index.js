@@ -27,7 +27,7 @@ class CategoryForm extends React.Component{
     this.props.onComplete({...this.state});
 
     if(!this.props.category){
-      this.setState({name: '', budget: ''})
+      this.setState({name: '', budget: 0})
     }
   }
 

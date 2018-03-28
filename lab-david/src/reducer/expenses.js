@@ -9,15 +9,18 @@ export default (state=initialState, action) => {
     case 'CATEGORY_CREATE':
       return {...state, [payload.id] : []};
     case 'CATEGORY_DELETE':
-      console.log('state@exp', {...state});
       delete state[payload.id];
       return {...state};
     case 'EXP_CREATE':
       let {categoryID} = payload;
-      let categoryExp = state[categoryID];
+      let categoryExp = [...state[categoryID], payload];
       return {...state, [categoryID] : [...categoryExp]};
     case 'EXP_UPDATE':
-      return state.map();
+      let categoryUpdateExp = state[payload.categoryID].map(exp => exp.id === payload.id ? payload : exp);
+      return {...state, [payload.categoryID]: [...categoryUpdateExp]};
+    case 'EXP_DELETE':
+      let categoryDeleteExp = state[payload.categoryID].filter(exp => exp.id !== payload.id);
+      return {...state, [payload.categoryID]: [...categoryDeleteExp]};
     default:
       return state;
   }
