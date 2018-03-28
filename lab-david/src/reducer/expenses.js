@@ -9,11 +9,15 @@ export default (state=initialState, action) => {
     case 'CATEGORY_CREATE':
       return {...state, [payload.id] : []};
     case 'CATEGORY_DELETE':
-      return {...state, [payload.id] : undefined};
+      console.log('state@exp', {...state});
+      delete state[payload.id];
+      return {...state};
     case 'EXP_CREATE':
       let {categoryID} = payload;
       let categoryExp = state[categoryID];
       return {...state, [categoryID] : [...categoryExp]};
+    case 'EXP_UPDATE':
+      return state.map();
     default:
       return state;
   }
