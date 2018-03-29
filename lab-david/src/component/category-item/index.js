@@ -1,50 +1,56 @@
 'use strict';
 
 import React from 'react';
+import {connect} from 'react-redux';
+import {categoryUpdate, categoryDelete} from '../../action/category-actions.js';
+import {expCreate} from '../../action/exp-actions.js';
 import CategoryForm from '../category-form';
+import ExpForm from '../exp-form';
+import ExpItem from '../exp-item';
+import category from '../../reducer/category.js';
 
 class CategoryItem extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      editing: false,
-      name: this.props.name,
-      budget: this.props.budget,
-      id: this.props.catId,
-      timestamp: this.props.timestamp
-    }
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
-
-  handleSubmit(category){
-    this.props.handleUpdate(category);
-  }
-
-  handleDelete(e){
-    this.props.handleDelete(Object.assign({},this.state));
-  }
-
   render(){
+    let {category, categoryUpdate, categoryDelete} = this.props;
     return(
-      <li key={this.props.catId} className='catitem'>
-        {this.state.editing === false ?
-          <div>
-            <div onClick={() => this.setState({editing: true})}>
-              <h4>{this.props.name}</h4>
-              <p>Budget: {this.props.budget}</p>
-            </div>
-            <button onClick={this.handleDelete}>Delete</button>
+      <section className='category-item'>
+        <div>
+          <div className='content'>
+            <h2>{category.name}</h2>
+            <h3>{category.budget}</h3>
+            <button onClick={() => categoryDelete(category)}>X</button>
           </div>
-          :
-          <CategoryForm
-            category={this.state}
-            onComplete={this.handleSubmit}
-            buttonText='Update Category' />
-        }
-      </li> 
+          <div className='edit'>
+            <CategoryForm
+              buttonText='update'
+              category={category}
+              onComplete={categoryUpdate} />
+          </div>
+          <div className='exp-form'>
+            <ExpForm
+              buttonText='new expense'
+              category={category}
+              onComplete={this.props.expCreate} />
+          </div>
+          {this.props.exp[this.props.category.id].map(item =>
+            <ExpItem key={item.id} category={this.props.category} expense={item} />)}
+        </div>
+      </section>
     )
   }
 }
 
-export default CategoryItem;
+const mapStateToProps = (state) => {
+  return {
+    categories: state.categories,
+    exp: state.exp
+  }
+}
+
+let mapDispatchToProps = dispatch => ({
+  categoryUpdate: (category) => dispatch(categoryUpdate(category)),
+  categoryDelete: (category) => dispatch(categoryDelete(category)),
+  expCreate: (expense) => dispatch(expCreate(expense))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryItem);

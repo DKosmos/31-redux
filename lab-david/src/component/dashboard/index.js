@@ -2,9 +2,9 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {categoryCreate} from '../../action/category-actions.js';
+import {categoryCreate as categoryActionCreate} from '../../action/category-actions.js';
 import CategoryForm from '../category-form';
-import CategoryList from '../category-list';
+import CategoryItem from '../category-item';
 import category from '../../reducer/category.js';
 
 class Dashboard extends React.Component{
@@ -20,7 +20,8 @@ class Dashboard extends React.Component{
         <CategoryForm
           buttonText='create category'
           onComplete={this.props.categoryCreate} />
-        <CategoryList />
+        {this.props.categories.map(item =>
+          <CategoryItem key={item.id} category={item} />)}
       </main>
     )
   }
@@ -28,13 +29,13 @@ class Dashboard extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
-    categories: state
+    categories: state.categories
   }
 }
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {
-    categoryCreate: (category) => dispatch(categoryCreate(category))
+    categoryCreate: (category) => dispatch(categoryActionCreate(category)),
   }
 }
 
