@@ -4,7 +4,7 @@ import uuid from 'uuid/v1';
 
 export const expCreate = (expense) => ({
   type: 'EXP_CREATE',
-  payload: {...expense, id: uuid()}
+  payload: {...expense, id: uuid(), timestamp: new Date()}
 })
 
 export const expUpdate = (expense) => ({
