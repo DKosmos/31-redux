@@ -16,8 +16,8 @@ class CategoryItem extends React.Component{
       <section className='category-item'>
         <div>
           <div className='content'>
-            <h2>{category.name}</h2>
-            <h3>{category.budget}</h3>
+            <h2>Category Name: {category.name}</h2>
+            <h3>Budget: {category.budget}</h3>
             <button onClick={() => categoryDelete(category)}>X</button>
           </div>
           <div className='edit'>

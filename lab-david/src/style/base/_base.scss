@@ -1,0 +1,23 @@
+body {
+  font-family: $font;
+}
+
+button {
+  border: none;
+  background: darkgrey;
+  color: white;
+  border-radius: $radius;
+  font-size: $font-small;
+  padding: $button-padding;
+  text-transform: lowercase;
+}
+
+input {
+  padding: $input-padding;
+  border: solid 1px black;
+  width: 30%;
+  margin-right: $gutter-small;
+  margin-bottom: $gutter-small;
+  font-size: $font-small;
+  border-radius: $radius;
+}

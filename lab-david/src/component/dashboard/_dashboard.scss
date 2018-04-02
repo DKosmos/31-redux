@@ -1,0 +1,13 @@
+main {
+  margin-bottom: 5vw;
+  margin-right: 5vw;
+  > h2 {
+    width: 100%;
+    background: black;
+    padding: $gutter-small;
+    font-size: $font-large;
+    color: white;
+    text-align: center;
+    margin-bottom: 2vw;
+  }
+}

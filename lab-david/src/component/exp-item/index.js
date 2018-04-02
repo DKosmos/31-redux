@@ -11,8 +11,8 @@ class ExpItem extends React.Component{
     return(
       <section className='exp-item'>
         <div className='content'>
-          <h4>{expense.name}</h4>
-          <h5>{expense.amt}</h5>
+          <h4>Expense: {expense.name}</h4>
+          <h5>Amount: ${expense.amt}</h5>
           <button onClick={() => expDelete(expense)}>X</button>
         </div>
         <div className='edit'>

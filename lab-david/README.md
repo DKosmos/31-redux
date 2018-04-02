@@ -29,6 +29,7 @@ This app is meant to demo React/Redux through a simple budgeting app.  Budget ca
 - react-test-renderer
 - redux
 - sass-loader
+- style-loader
 - superagent
 - uglifyjs-webpack-plugin
 - url-loader
